@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'pip install pytest'
+                sh 'pip3 install pytest --user'
                 sh 'python -m pytest src --verbose --junit-xml test-reports/results.xml'
             }
         }
