@@ -1,7 +1,8 @@
 pipeline {
     agent {
         node {
-            label "python3.6"
+            label 'my_local_server'
+            customWorkspace '/projects/'
         }
     }
     stages {
