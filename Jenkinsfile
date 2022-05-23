@@ -1,15 +1,12 @@
 pipeline {
-    agent any
-    stages {
-        stage('Install Dependencies') {
-          steps {
-            sh """
-              python -m venv .env
-              source ./.env/bin/activate
-              python -m pip install -r requirements.txt
-              python -m pip install pytest pytest-cov coverage
-              """
-          }
+    agent {
+        docker {
+            image 'qnib/pytest' 
+        }
+    }
+    stage('Test') {
+        steps{
+            sh 'python -m pytest src --verbose --junit-xml test-reports/results.xml'
         }
     }
 }
