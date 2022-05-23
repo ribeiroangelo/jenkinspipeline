@@ -7,7 +7,7 @@ pipeline {
     stages{
         stage('Test') {
             steps{
-                sh 'python -m pytest src --verbose --junit-xml test-reports/results.xml'
+                sh 'python -m pytest tests/ --verbose --junit-xml test-reports/results.xml'
             }
         }
     }
