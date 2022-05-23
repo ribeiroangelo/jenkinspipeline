@@ -1,5 +1,9 @@
 pipeline {
-    agent { label 'python36' }
+    agent {
+        node {
+            label "python3.6'
+        }
+    }
     stages {
         stage('Install Dependencies') {
           steps {
