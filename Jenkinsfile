@@ -8,7 +8,7 @@ pipeline {
         stage('Test') {
             steps{
                 sh '''
-                coverage run --source tests/ -m pytest tests/ -s -vv --junit-xml=src/tests/unit_integration_test_results.xml
+                coverage run --source app/ -m pytest tests/ -s -vv --junit-xml=src/tests/unit_integration_test_results.xml
                 coverage html --fail-under=86
                 '''
             }
