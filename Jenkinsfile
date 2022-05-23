@@ -9,7 +9,9 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo 'Testing'
+                sh '''
+                python -m pytest src --verbose --junit-xml test-reports/results.xml
+                '''
             }
         }
         stage('Deploy') {
