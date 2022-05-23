@@ -1,11 +1,15 @@
 pipeline {
-    agent { docker { image 'python:3.10.1-alpine' } }
+    agent { label 'python36' }
     stages {
-        stage('build') {
-            steps {
-                sh 'pip install pytest'
-                sh 'python -m pytest src --verbose --junit-xml test-reports/results.xml'
-            }
+        stage('Install Dependencies') {
+          steps {
+            sh """
+              python -m venv .env
+              source ./.env/bin/activate
+              python -m pip install -r requirements.txt
+              python -m pip install pytest pytest-cov coverage
+              """
+          }
         }
     }
 }
